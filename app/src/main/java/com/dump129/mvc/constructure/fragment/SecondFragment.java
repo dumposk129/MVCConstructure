@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.dump129.mvc.constructure.R;
 
@@ -13,14 +14,15 @@ import com.dump129.mvc.constructure.R;
 /**
  * Created by nuuneoi on 11/16/2014.
  */
-public class FragmentTemplateFull extends Fragment {
+public class SecondFragment extends Fragment {
+    private Button btnOK;
 
-    public FragmentTemplateFull() {
+    public SecondFragment() {
         super();
     }
 
-    public static FragmentTemplateFull newInstance() {
-        FragmentTemplateFull fragment = new FragmentTemplateFull();
+    public static SecondFragment newInstance() {
+        SecondFragment fragment = new SecondFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -38,7 +40,7 @@ public class FragmentTemplateFull extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_second, container, false);
         initInstances(rootView, savedInstanceState);
         return rootView;
     }
@@ -53,6 +55,15 @@ public class FragmentTemplateFull extends Fragment {
         // Init 'View' instance(s) with rootView.findViewById here
         // Note: State of variable initialized here could not be saved
         //       in onSavedInstanceState
+        btnOK = (Button) rootView.findViewById(R.id.btnOK);
+
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
+
     }
 
     @Override
@@ -65,5 +76,4 @@ public class FragmentTemplateFull extends Fragment {
     private void onRestoreInstanceState(Bundle savedInstanceState) {
         // Restore Instance (Fragment level's variables) State here
     }
-
 }
